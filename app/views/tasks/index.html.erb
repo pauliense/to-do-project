@@ -1,27 +1,56 @@
+<div class="text-center padded">
 <br>
 <br>
 <br>
 <br>
-<ul class="inline">
-<% @tasks.each do |task| %>
-  <li>
-    <%= task.name %>
-  </li>
-<% if task.done? %>
-  <li><i class="fa fa-check-square-o" aria-hidden="true"></i></li>
-<% else %>
+
+<%= link_to "Categories", "#{tasks_path}#exactline"  %>
+
+
+<h2>Unfinished</h2>
+<ul class="inline list-unstyled">
+<% @unfinished_tasks.each do |task| %>
   <%= simple_form_for [task] do |f| %>
             <%= f.hidden_field :done, value: true %>
             <%= f.submit "Mark task as done", class: "btn btn-primary" %>
             <% end %>
-  <li><i class="fa fa-square-o" aria-hidden="true"></i></li>
-<% end %>
-  <p>
-    <li>  <%= task.description %></li>
-    <li>  <%= task.date %></li>
     <li><%= link_to task.name, task_path(task) %></li>
+
+    <li>  <%= task.description %></li>
+  <li><i class="fa fa-square-o" aria-hidden="true"></i></li>
+  <p>
+    <li>  <%= task.date.to_formatted_s(:long_ordinal) %></li>
   </p>
 <% end %>
   </ul>
 
+<br>
+<br>
+<br>
+<br>
 
+
+
+<a name="exactline"></a>
+
+<h2>Done</h2>
+
+<ul class="inline list-unstyled">
+<% @finished_tasks.each do |task| %>
+    <li><%= link_to task.name, task_path(task) %></li>
+  <li><i class="fa fa-check-square-o" aria-hidden="true"></i></li>
+  <p>
+    <li>  <%= task.description %></li>
+    <li>  <%= task.date.to_formatted_s(:long_ordinal) %></li>
+  </p>
+  <br>
+  <br>
+  <br>
+<% end %>
+  </ul>
+
+
+
+
+
+</div>

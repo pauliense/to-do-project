@@ -1,24 +1,23 @@
 <div class="text-center">
 
   <h1>Name of the app</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+
+<div class="form-task">
+
 
   <% if current_user %>
+<%= link_to "Categories", "#{tasks_path}#exactline"  %>
 
   <%= simple_form_for [@task] do |f| %>
   <%= f.error_notification %>
-  <%= f.input :date, label: "When is this task due?", selected: Date.today,  order: [:day, :month, :year]%>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :date, label: "When is this task due?", selected: Date.today,  order: [:day, :month, :year]%>
+  <%= f.input :category, label: "What is the category", collection: Task::CATEGORY, include_blank: true  %>
   <%= f.submit "Make new task", class: "btn btn-primary" %>
   <% end %>
 
+</div>
 
 
   <% else %>

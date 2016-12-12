@@ -4,3 +4,39 @@
 <br>
 <br>
 <h2> <%= @task.name %></h2>
+<%= @task.description %>
+<%= @task.done %>
+<%#= @task.category %>
+<%= @task.date.to_formatted_s(:long_ordinal)  %>
+
+
+<%#= link_to "Edit this task",  edit_task_path(@task) %>
+
+<button type="button" class="button-log" data-toggle="modal" data-target="#chatModal">
+  Edit this task
+</button>
+<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="myModalLabel"><%= @task.name %></h3>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@task] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name, label: "What's the new name?"%>
+        <%= f.input :description, label: "New description?" %>
+        <%= f.input :date, label: "New due date?" %>
+        <%= f.input :done %>
+        <%= f.input :category, label: "What is the category", collection: Task::CATEGORY, include_blank: true  %>
+        <%= f.submit "Change", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

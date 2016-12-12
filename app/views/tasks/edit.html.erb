@@ -1,0 +1,16 @@
+    <br>
+    <br>
+<h2>Whoopsie daisy! You ended up on this page because you can't do this to your task!</h2>
+
+
+          <%= simple_form_for [@task] do |f| %>
+                <%= f.error_notification %>
+                <%= f.input :name, label: "What's the new name?"%>
+                <%= f.input :description, label: "New description?" %>
+                <%= f.input :date, label: "New due date?" %>
+                <%= f.input :done %>
+                <%= f.input :category, label: "What is the category", collection: Task::CATEGORY, include_blank: true  %>
+                <%= f.submit "Change", class: "btn btn-primary" %>
+                <%= link_to "Nevermind, just go back!", task_path(@task), class: "btn-primary btn" %>
+
+                <% end %>

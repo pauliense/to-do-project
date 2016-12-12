@@ -1,4 +1,8 @@
 
+<div class="text-center">
+
+
+
 <br>
 <br>
 <br>
@@ -6,23 +10,37 @@
 
 <br>
 <br>
+
+
 
 
 <% if !@tasks.nil?  %>
 
 <% if !@tasks.empty?%>
 
+<p>Your search for <strong> <em> <%=  @search_term %></em></strong> led us here!</p>
+
 
 <% @tasks.each do |task| %>
+
+<li>
+<%  if task.done? %>
+<i class="fa fa-check-square-o" aria-hidden="true"></i>
+<% else %>
+  <%= simple_form_for [task] do |f| %>
+            <%= f.hidden_field :done, value: true %>
+            <%= f.submit "Mark task as done", class: "btn btn-primary" %>
+            <% end %>
+<% end %>
 <%= link_to task.name, task_path(task) %>
 <%= task.description %>
 
-<%= task.date.to_formatted_s(:long_ordinal) %>
+<%= task.date.to_formatted_s(:long_ordinal) %></li>
 <% end %>
 
 <% else %>
 
-<p>Sorry, your search led us nowhere!</p>
+<p>Sorry, your search for <strong> <em> <%=  @search_term %></em></strong> led us nowhere!</p>
 
 
 <% end %>
@@ -34,3 +52,4 @@ You did not search for anything.. You just pressed enter. That's weird.
 
 
 <% end %>
+</div>
