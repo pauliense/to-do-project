@@ -1,0 +1,36 @@
+
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+
+
+<% if !@tasks.nil?  %>
+
+<% if !@tasks.empty?%>
+
+
+<% @tasks.each do |task| %>
+<%= link_to task.name, task_path(task) %>
+<%= task.description %>
+
+<%= task.date.to_formatted_s(:long_ordinal) %>
+<% end %>
+
+<% else %>
+
+<p>Sorry, your search led us nowhere!</p>
+
+
+<% end %>
+
+
+<% else %>
+
+You did not search for anything.. You just pressed enter. That's weird.
+
+
+<% end %>

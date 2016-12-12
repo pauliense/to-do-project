@@ -1,30 +1,27 @@
-<div class="navbar-wagon navbar-wagon-fixed">
+<div class="navbar-wagon  navbar-wagon-fixed">
   <!-- Logo -->
   <a href="/">
     <img src="images/lewagon.png" />
   </a>
 
   <% if current_user %>
-  <h2> <%= current_user.email %> </h2>
+  <h5> <%= current_user.email %> </h5>
 
-<% end %>
-
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <% end %>
 
     <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
+    <form action="/search" method="get" class="navbar-wagon-search">
+      <input type="text" name="query" id="query" class="navbar-wagon-search-input" placeholder="Search tasks, date-format: YYYY-MM-DD">
+      <button type="submit" value="Search" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
 
-    <!-- Text link -->
-    <a href="" class="navbar-wagon-item">Contact</a>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
 
     <!-- Text link -->
-    <a href="" class="navbar-wagon-item">Team</a>
 
     <!-- Notification link-->
     <a href="" class="navbar-wagon-item">
@@ -40,14 +37,26 @@
         <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li>
+
+          <%= link_to "Dashboard", tasks_path  %>
+
+          </li>
+          <% if current_user %>
+          <li><%= link_to "Account settings", edit_user_registration_path  %></li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          <% else %>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
 
     <!-- Button (call-to-action) -->
-    <a href="" class="navbar-wagon-item button-cta">Post stuff</a>
   </div>
 
   <!-- Dropdown appearing on mobile only -->

@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise'
 gem 'omniauth-github'
+gem 'pg_search'
 
 
 gem 'sass-rails'

@@ -1,77 +1,30 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="text-center">
 
-Test hallo!
+  <h1>Name of the app</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-haha
-e
+  <% if current_user %>
 
-<br>
-<% @tasks.each do |task| %>
-
-<h2><%= task.name %></h2>
-<h2>  <%= task.description %></h2>
-<% end %>
-<br>
-hee
+  <%= simple_form_for [@task] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :date, label: "When is this task due?", selected: Date.today,  order: [:day, :month, :year]%>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.submit "Make new task", class: "btn btn-primary" %>
+  <% end %>
 
 
-<%= link_to "Sign up here", new_user_registration_path  %>
 
-<br>
+  <% else %>
 
-<%= link_to "Sign in here", new_user_session_path  %>
-<br>
+  <h2>Sign up, you won't regret it!</h2>
 
-<%= link_to destroy_user_session_path, method: :delete do %>
-  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-<% end %>
+  <% end %>
 
-<br>
-
-<%= link_to "Edit your account settings", edit_user_registration_path  %>
-he
-ee
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-ajaj
-haha
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
